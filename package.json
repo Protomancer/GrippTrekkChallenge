@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "watch": "nodemon server.js",
-    "add": "git add . && git commit -m \"updating work\" && git push" 
+    "add": "git add . && git commit -m \"updating work\" && git push"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
     "express-session": "^1.17.3",
     "handlebars": "^4.7.7",
     "inquirer": "^8.2.4",
+    "is-number": "^7.0.0",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.16",
     "sequelize": "^6.20.1"
