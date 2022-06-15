@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const sequelize = require('../config/connections');
 
 // Create a new Sequelize model for Boulder
 class Boulder extends Model {}
@@ -8,16 +8,20 @@ Boulder.init(
   // Define fields/columns on model
   {
     routeName: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false
     },
     rating: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      alowNull: false
     },
     attempts: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      allowNull: false
     },
     notes: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false
     },    
   },
   {
@@ -30,4 +34,4 @@ Boulder.init(
   }
 );
 
-module.exports = Book;
+module.exports = Boulder;
