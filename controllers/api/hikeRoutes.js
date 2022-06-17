@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const Hike = require('../../models/Hike');
 
+
 router.get('/', async (req, res) => {
     const dataHike = await Hike.findAll().catch((err) => {
         res.json(err);
