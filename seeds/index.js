@@ -17,7 +17,7 @@ for (let i = 0; i < 10; i++) {
 for (let i = 0; i < 10; i++) {
   boulderData.push({
     routeName: `BoulderName${i}`,
-    rating: v0,
+    rating: 'v0',
     attempts: `${Math.floor(Math.random() * 5)}`,
     notes: 0,
   });
@@ -27,7 +27,7 @@ for (let i = 0; i < 10; i++) {
     id: `${Math.floor(Math.random() * 12)}`,
     name: `UserName${i}`,
     email: `rumblyinmytumbly@gmail.com`,
-    password: NONE,
+    password: 'password',
   });
 };
 
