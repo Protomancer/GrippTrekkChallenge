@@ -7,19 +7,20 @@ Hike.init (
     {
         hikeName: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         time: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         length: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true,
+            default: 0
         },
         elevationChange: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         }
     },
     {
