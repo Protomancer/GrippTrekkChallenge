@@ -12,7 +12,7 @@ const loginFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/'); //replaces page with homepage or start route
+        document.location.replace('/profile'); //replaces page with homepage or start route
       } else {
         alert('Failed to log in');
       }
