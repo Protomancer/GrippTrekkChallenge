@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-auto">
+    <h2>Welcome, {{name}}!</h2>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-md-6">
+    <h3>Create a New Activity:</h3>
+    <div class="row">
+    <form class="col s12 new-activity-form">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <label for="textarea1">Route Name</label>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <label for="textarea1">Description</label>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <label for="textarea1">Rating</label>
+        </div>
+      </div>
+    </form>
+    <a class="waves-effect waves-light btn" type="submit">Add Activity</a>
+  </div>
+
+Prefilling 
+
+  {{#if activities.length}}
+  <div class="col-md-6 activity-list">
+    <h3>Current Activities:</h3>
+
+    {{#each activities as |activity|}}
+    <div class="row mb-2">
+      <div class="col-md-8">
+        <h4><a href="/actvitiy/{{actvitiy.id}}">{{activity.name}}</a></h4>
+      </div>
+      <div class="col-md-4">
+        <a class="waves-effect waves-light btn" data-id="{{actvitiy.id}}">Delete</a>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+</div>
+
+<script src="./js/profile.js"></script>
