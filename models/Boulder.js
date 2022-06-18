@@ -9,19 +9,19 @@ Boulder.init(
   {
     routeName: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     rating: {
       type: DataTypes.STRING,
-      alowNull: false
+      alowNull: true
     },
     attempts: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
     notes: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },    
   },
   {

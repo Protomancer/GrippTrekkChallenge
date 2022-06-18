@@ -4,10 +4,10 @@ const boulderRoutes = require('./boulderRoutes');
 const userRoutes = require('./userRoutes');
 
 
-router.use('/boulders', boulderRoutes);
+router.use('/boulder', boulderRoutes);
 
-router.use('/hikes', hikeRoutes);
+router.use('/hike', hikeRoutes);
 
-router.use('/users', userRoutes);
+router.use('/user', userRoutes);
 
 module.exports = router;
