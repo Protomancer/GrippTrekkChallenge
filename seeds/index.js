@@ -1,10 +1,10 @@
 const sequelize = require('../config/connection');
 const Boulder = require('../models/Boulder');
-const Hike = require('../models/Hike')
-const boulderData = require('../seeds/boulder-seeds.json');
-// const hikeData = require('../seeds/hiking-seeds.json')
-// const faker = require("faker")
+const Hike = require('../models/Hike');
+const User = require('../models/User');
 const hikeData = []
+const boulderData = []
+const userData = []
 
 for (let i = 0; i < 10; i++) {
   hikeData.push({
@@ -13,18 +13,25 @@ for (let i = 0; i < 10; i++) {
     length: 0,
     elevationChange: 0
   });
-}
+};
 for (let i = 0; i < 10; i++) {
   boulderData.push({
     routeName: `BoulderName${i}`,
     rating: v0,
-    attempts: `${math.floor(math.random() * 5)}`,
+    attempts: `${Math.floor(Math.random() * 5)}`,
     notes: 0,
-
   });
-}
+};
+for (let i = 0; i < 10; i++) {
+  userData.push({
+    id: `${Math.floor(Math.random() * 12)}`,
+    name: `UserName${i}`,
+    email: `rumblyinmytumbly@gmail.com`,
+    password: NONE,
+  });
+};
 
-const seedDatabase = async () => {
+async function seedDatabase() {
 
 
   await sequelize.sync({ force: true });
@@ -39,7 +46,12 @@ const seedDatabase = async () => {
     returning: true,
   });
 
+  await User.bulkCreate(userData, {
+    individualHooks: true,
+    returning: true,
+  });
+
   process.exit(0);
-};
+}
 
 seedDatabase();
