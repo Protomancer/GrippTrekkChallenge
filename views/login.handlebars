@@ -1,27 +1,12 @@
-<h2>Login</h2>
-
-{{!-- <form class="form login-form">
-  <div class="form-group">
-    <label for="email-login">Email:</label>
-    <input class="form-input" type="text" id="email-login" />
-  </div>
-  <div class="form-group">
-    <label for="password-login">Password:</label>
-    <input class="form-input" type="password" id="password-login" />
-  </div>
-  <div class="form-group">
-    <button class="btn btn-primary" type="submit">Login</button>
-  </div>
-</form> --}}
-
 <div class="row">
-    <form class="col s12 login-form">
-      <div class="row">
+  <div class="col-md-6">
+    <h2>Login</h2>
+    
+    <form class="form login-form">
         <div class="input-field col s12">
           <input id="email-login" type="email" class="validate">
           <label for="email">Email</label>
         </div>
-      </div>
       <div class="row">
         <div class="input-field col s12">
           <input id="password-login" type="password" class="validate">
@@ -31,6 +16,29 @@
       <div><a class="waves-effect waves-light btn" type="submit">Login</a>
       </div>
     </form>
+  </div>
+  <div class="col-md-6">
+    <h2>Signup</h2>
+
+    <form class="form signup-form">
+      <div class="form-group">
+        <label for="name-signup">name:</label>
+        <input class="form-input" type="text" id="name-signup" />
+      </div>
+      <div class="form-group">
+        <label for="email-signup">email:</label>
+        <input class="form-input" type="text" id="email-signup" />
+      </div>
+      <div class="form-group">
+        <label for="password-signup">password:</label>
+        <input class="form-input" type="password" id="password-signup" />
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">signup</button>
+      </div>
+    </form>
+  </div>
+</div>
 </div>
 
 <script src="/js/login.js"></script>
