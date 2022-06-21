@@ -1,21 +1,21 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const  User  = require('../models/User');
 const withAuth = require('../utils/auth');
 
 
-// Prevent non logged in users from viewing the homepage
+// stops non logged in users from accessing page
 router.get('/', withAuth, async (req, res) => {
   try {
-    const userData = await User.findAll({
+    const logData = await User.findAll({
       attributes: { exclude: ['password'] },
       order: [['name', 'ASC']],
     });
 
-    const users = userData.map((project) => project.get({ plain: true }));
+    const users = logData.map((project) => project.get({ plain: true }));
 
     res.render('homepage', {
       users,
-      // Pass the logged in flag to the template
+      // sends logged in
       logged_in: req.session.logged_in,
     });
   } catch (err) {
@@ -24,7 +24,7 @@ router.get('/', withAuth, async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-  // If a session exists, redirect the request to the homepage
+  // session redirects to home page if it exists
   if (req.session.logged_in) {
     res.redirect('/');
     return;
@@ -35,7 +35,7 @@ router.get('/login', (req, res) => {
 
 
 router.get('/signUp', (req, res) => {
-  // If a session exists, redirect the request to the homepage
+ // session redirects to home page if it exists
   if (req.session.logged_in) {
     res.redirect('/');
     return;
