@@ -6,21 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GrippTrekk Challenge</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
   <div class="flex-column justify-space-around">
     <header class="display-flex justify-space-between align-center p-2">
       <h1>
-        Add Activity!
+        Welcome to GrippTrekk Challenge!
       </h1>
       <nav>
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
         <a href="/profile">Profile</a> |
         <a class="waves-effect waves-light btn" id="logout">Logout</a>
-        {{else}}
-        <a href="/login">Login</a>
         {{/if}}
       </nav>
     </header>
