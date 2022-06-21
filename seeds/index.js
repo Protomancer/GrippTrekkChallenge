@@ -22,9 +22,9 @@ for (let i = 0; i < 10; i++) {
     notes: 0,
   });
 };
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 1; i++) {
   userData.push({
-    id: `${Math.floor(Math.random() * 12)}`,
+    id: `1`,
     name: `UserName${i}`,
     email: `rumblyinmytumbly@gmail.com`,
     password: 'password',
