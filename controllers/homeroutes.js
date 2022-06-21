@@ -1,5 +1,9 @@
 const router = require('express').Router();
+<<<<<<< HEAD
 const  User  = require('../models/User');
+=======
+const { User, Hike } = require('../models');
+>>>>>>> 5304b02a2d25b66dac3e444b0f5e80551d5e718d
 const withAuth = require('../utils/auth');
 
 
@@ -26,7 +30,7 @@ router.get('/', withAuth, async (req, res) => {
 router.get('/login', (req, res) => {
   // session redirects to home page if it exists
   if (req.session.logged_in) {
-    res.redirect('/');
+    res.redirect('/profile');
     return;
   }
 
@@ -42,6 +46,25 @@ router.get('/signUp', (req, res) => {
   }
 
   res.render('signup');
+});
+
+router.get('/profile', async (req, res) => {
+  try {
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Hike }],
+    });
+
+    const user = userData.get({ plain: true });
+
+    res.render('profile', {
+      ...user,
+      logged_in: true
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
