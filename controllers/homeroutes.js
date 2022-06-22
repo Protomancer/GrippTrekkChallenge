@@ -38,16 +38,6 @@ router.get('/login', (req, res) => {
 });
 
 
-// router.get('/signUp', (req, res) => {
-//  // session redirects to home page if it exists
-//   if (req.session.logged_in) {
-//     res.redirect('/');
-//     return;
-//   }
-
-//   res.render('signup');
-// });
-
 router.get('/profile', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID

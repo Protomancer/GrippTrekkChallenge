@@ -17,8 +17,4 @@ Hike.belongsTo(User, {
     foreignKey: 'user_id'
 });
 
-module.exports = Hike;
-
-module.exports = Boulder;
-
-module.exports = User;
+module.exports = {User,Boulder,Hike};
