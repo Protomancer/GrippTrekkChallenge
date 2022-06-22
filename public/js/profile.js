@@ -22,21 +22,6 @@ const newFormHandler = async (event) => {
     }
   };
   
-//   const delButtonHandler = async (event) => {
-//     if (event.target.hasAttribute('data-id')) {
-//       const id = event.target.getAttribute('data-id');
-  
-//       const response = await fetch(`/api/activities/${id}`, {
-//         method: 'DELETE',
-//       });
-  
-//       if (response.ok) {
-//         document.location.replace('/activity');
-//       } else {
-//         alert('Failed to delete activity');
-//       }
-//     }
-//   };
   
   document
     .querySelector('.new-hike-form')
