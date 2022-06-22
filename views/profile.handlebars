@@ -8,11 +8,11 @@
   <div class="col-md-6">
     <h3>Create a New Activity:</h3>
     <div class="row">
-    <form class="col s12 new-activity-form">
+    <form class="col s12 new-hike-form">
       <div class="row">
         <div class="input-field col s12">
-          <textarea id="textarea1" class="materialize-textarea"></textarea>
-          <label for="textarea1">Route Name</label>
+          <textarea id="hike-name" class="materialize-textarea"></textarea>
+          <label for="hike=name">Hike Name</label>
         </div>
       </div>
     </form>
@@ -21,8 +21,8 @@
     <form class="col s12">
       <div class="row">
         <div class="input-field col s12">
-          <textarea id="textarea1" class="materialize-textarea"></textarea>
-          <label for="textarea1">Description</label>
+          <textarea id="hike-rating" class="materialize-textarea"></textarea>
+          <label for="hike-rating">Des</label>
         </div>
       </div>
     </form>
@@ -31,8 +31,8 @@
     <form class="col s12">
       <div class="row">
         <div class="input-field col s12">
-          <textarea id="textarea1" class="materialize-textarea"></textarea>
-          <label for="textarea1">Rating</label>
+          <textarea id="hike-elevation" class="materialize-textarea"></textarea>
+          <label for="hike-elevation">Rating</label>
         </div>
       </div>
     </form>
@@ -41,17 +41,17 @@
 
 Prefilling 
 
-  {{#if activities.length}}
-  <div class="col-md-6 activity-list">
+  {{#if hikes.length}}
+  <div class="col-md-6 hike-list">
     <h3>Current Activities:</h3>
 
-    {{#each activities as |activity|}}
+    {{#each hikes as |hike|}}
     <div class="row mb-2">
       <div class="col-md-8">
-        <h4><a href="/actvitiy/{{actvitiy.id}}">{{activity.name}}</a></h4>
+        <h4><a href="/hike/{{hike.id}}">{{hike.name}}</a></h4>
       </div>
       <div class="col-md-4">
-        <a class="waves-effect waves-light btn" data-id="{{actvitiy.id}}">Delete</a>
+        <a class="waves-effect waves-light btn" data-id="{{hike.id}}">Delete</a>
       </div>
     </div>
     {{/each}}

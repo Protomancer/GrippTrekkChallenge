@@ -1,15 +1,25 @@
 const router = require('express').Router();
-<<<<<<< HEAD
-const  User  = require('../models/User');
-=======
-const { User, Hike } = require('../models');
->>>>>>> 5304b02a2d25b66dac3e444b0f5e80551d5e718d
+const User  = require('../models/User');
+const Hike = require('../models/Hike');
 const withAuth = require('../utils/auth');
 
 
 // stops non logged in users from accessing page
 router.get('/', withAuth, async (req, res) => {
   try {
+    const hikeData = await Hike.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+
+    const hike = hikeData.map((hike) => hike.get({ plain: true }));
+
+    res.render('homepage', {
+      hike,
     const logData = await User.findAll({
       attributes: { exclude: ['password'] },
       order: [['name', 'ASC']],
@@ -48,7 +58,7 @@ router.get('/signUp', (req, res) => {
   res.render('signup');
 });
 
-router.get('/profile', async (req, res) => {
+router.get('/profile', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
@@ -61,6 +71,26 @@ router.get('/profile', async (req, res) => {
     res.render('profile', {
       ...user,
       logged_in: true
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/hike/:id', async (req, res) => {
+  try {
+    const hikeData = await Hike.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+    const hike = hikeData.get({ plain: true});
+    res.render('hike', {
+      ...hike,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);

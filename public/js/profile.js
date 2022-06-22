@@ -1,14 +1,14 @@
 const newFormHandler = async (event) => {
     event.preventDefault();
   
-    const name = document.querySelector('#activity-name').value.trim();
-    const rating = document.querySelector('#activity-rating').value.trim();
-    const description = document.querySelector('#activity-desc').value.trim();
+    const name = document.querySelector('#hike-name').value.trim();
+    const rating = document.querySelector('#hike-rating').value.trim();
+    const elevation = document.querySelector('#hike-elevation').value.trim();
   
-    if (name && rating && description) {
+    if (name && rating && elevation) {
       const response = await fetch(`/api/hike`, {
         method: 'POST',
-        body: JSON.stringify({ name, rating, description }),
+        body: JSON.stringify({ name, rating, elevation }),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -39,9 +39,9 @@ const newFormHandler = async (event) => {
 //   };
   
   document
-    .querySelector('.new-activity-form')
+    .querySelector('.new-hike-form')
     .addEventListener('submit', newFormHandler);
   
   document
-    .querySelector('.activity-list')
+    .querySelector('.hike-list')
     .addEventListener('click', delButtonHandler);
