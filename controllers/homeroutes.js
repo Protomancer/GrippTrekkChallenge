@@ -17,19 +17,8 @@ router.get('/', withAuth, async (req, res) => {
     });
 
     const hike = hikeData.map((hike) => hike.get({ plain: true }));
-
-    res.render('homepage', {
+      res.render('homepage', {
       hike,
-    const logData = await User.findAll({
-      attributes: { exclude: ['password'] },
-      order: [['name', 'ASC']],
-    });
-
-    const users = logData.map((project) => project.get({ plain: true }));
-
-    res.render('homepage', {
-      users,
-      // sends logged in
       logged_in: req.session.logged_in,
     });
   } catch (err) {
