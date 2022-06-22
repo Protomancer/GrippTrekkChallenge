@@ -1,21 +1,26 @@
 const router = require('express').Router();
-const { User, Hike } = require('../models');
+const User  = require('../models/User');
+const Hike = require('../models/Hike');
 const withAuth = require('../utils/auth');
 
 
 // Prevent non logged in users from viewing the homepage
 router.get('/', withAuth, async (req, res) => {
   try {
-    const userData = await User.findAll({
-      attributes: { exclude: ['password'] },
-      order: [['name', 'ASC']],
+    const hikeData = await Hike.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
     });
 
-    const users = userData.map((project) => project.get({ plain: true }));
+    const hike = hikeData.map((hike) => hike.get({ plain: true }));
 
     res.render('homepage', {
-      users,
-      // Pass the logged in flag to the template
+      hike,
+      // sends logged in
       logged_in: req.session.logged_in,
     });
   } catch (err) {
@@ -44,7 +49,7 @@ router.get('/signUp', (req, res) => {
   res.render('signup');
 });
 
-router.get('/profile', async (req, res) => {
+router.get('/profile', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
@@ -57,6 +62,26 @@ router.get('/profile', async (req, res) => {
     res.render('profile', {
       ...user,
       logged_in: true
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/hike/:id', async (req, res) => {
+  try {
+    const hikeData = await Hike.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+    const hike = hikeData.get({ plain: true});
+    res.render('hike', {
+      ...hike,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
