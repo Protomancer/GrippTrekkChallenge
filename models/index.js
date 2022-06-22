@@ -16,6 +16,6 @@ Hike.belongsTo(User, {
 
 module.exports = Hike;
 
-module.exports = {Boulder};
+module.exports = Boulder;
 
-module.exports = {User};
+module.exports = User;

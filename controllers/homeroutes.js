@@ -4,7 +4,7 @@ const Hike = require('../models/Hike');
 const withAuth = require('../utils/auth');
 
 
-// Prevent non logged in users from viewing the homepage
+// stops non logged in users from accessing page
 router.get('/', withAuth, async (req, res) => {
   try {
     const hikeData = await Hike.findAll({
@@ -20,6 +20,15 @@ router.get('/', withAuth, async (req, res) => {
 
     res.render('homepage', {
       hike,
+    const logData = await User.findAll({
+      attributes: { exclude: ['password'] },
+      order: [['name', 'ASC']],
+    });
+
+    const users = logData.map((project) => project.get({ plain: true }));
+
+    res.render('homepage', {
+      users,
       // sends logged in
       logged_in: req.session.logged_in,
     });
@@ -29,7 +38,7 @@ router.get('/', withAuth, async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-  // If a session exists, redirect the request to the homepage
+  // session redirects to home page if it exists
   if (req.session.logged_in) {
     res.redirect('/profile');
     return;
@@ -40,7 +49,7 @@ router.get('/login', (req, res) => {
 
 
 router.get('/signUp', (req, res) => {
-  // If a session exists, redirect the request to the homepage
+ // session redirects to home page if it exists
   if (req.session.logged_in) {
     res.redirect('/');
     return;
