@@ -1,11 +1,18 @@
 const router = require('express').Router();
 const Boulder = require('../../models/Boulder');
+const withAuth = require('../../utils/auth');
 
-router.get('/', async (req, res) => {
-    const dataBoulder = await Boulder.findAll().catch((err) => {
-        res.json(err);
+
+router.get('/', withAuth, async (req, res) => {
+    try{
+    const newBoulder = await Boulder.create({
+        ...req.body,
+        user_id: req.session.user_id,
     });
-    res.json(dataBoulder);
+    res.status(200).json(newBoulder);
+    } catch (err) {
+        res.status(400).json(err);
+    }
 });
 
 router.post('/', async (req, res) => {
@@ -16,5 +23,4 @@ router.post('/', async (req, res) => {
         res.status(400).json(err);
     }
 });
-
 module.exports = router;
