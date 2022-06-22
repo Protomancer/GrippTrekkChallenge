@@ -1,20 +1,23 @@
 <!-- Loop over each object in the projects array -->
-{{#each activity as |activity| }}
+{{#each hikes as |hike| }}
 <div class="row mb-4">
   <div class="col-md-5">
     <h2>
       <!-- Call helper function with triple brackets to render the emoji span as HTML -->
-      <a href="/actitiy/{{activity.id}}">{{activity.name}}</a>
+      <a href="/hike/{{hike.id}}">{{hike.hikeName}}</a>
     </h2>
     <div class="col-md-7">
       <p>
-        {{activity.description}}
+        {{hike.time}}
       </p>
       <p> 
-        {{actitiy.rating}}
+        {{hike.length}}
+      </p>
+      <p>
+        {{hike.elevationChange}}
       </p>
       </div>
-      <p>Created by {{activity.user.name}} on {{format_date activity.date_created}}</p>
+      <p>Created by {{hike.user.name}}</p>
   </div>
 </div>
 {{/each}}

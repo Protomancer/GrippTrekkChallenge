@@ -5,6 +5,12 @@ class Hike extends Model {}
 
 Hike.init (
     {
+        id: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            primaryKey: true,
+            autoIncrement: true,
+        },
         hikeName: {
             type: DataTypes.STRING,
             allowNull: true
