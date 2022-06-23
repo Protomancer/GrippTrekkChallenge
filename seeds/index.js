@@ -22,13 +22,6 @@ const seedDatabase = async () => {
     });
   };
 
-  for (const boulder of boulderData) {
-    await Boulder.create({
-      ...boulder,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
-    });
-  };
-
   for (const user of userData) {
     await User.create({
       ...user,
