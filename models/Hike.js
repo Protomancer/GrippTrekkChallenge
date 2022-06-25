@@ -19,7 +19,7 @@ Hike.init (
             type: DataTypes.STRING,
             allowNull: true
         },
-        length: {
+        hikeLength: {
             type: DataTypes.INTEGER,
             allowNull: true,
             default: 0
