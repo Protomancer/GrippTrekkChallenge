@@ -2,19 +2,19 @@
     {
       "hikeName": "Hike 1",
       "time": "3 hours",
-      "length": 67,
-      "elevationChange": "100 ft"
+      "hikeLength": 67,
+      "elevationChange": "100ft"
     },
     {
-        "hikeName": "Hike 2",
-        "time": "4 hours",
-        "length": 75,
-        "elevationChange": "150ft"
-      },
-      {
-        "hikeName": "Hike 3",
-        "time": "1 hours",
-        "length": 32,
-        "elevationChange": "50 ft"
-      }
+      "hikeName": "Hike 2",
+      "time": "4 hours",
+      "hikeLength": 75,
+      "elevationChange": "150ft"
+    },
+    {
+      "hikeName": "Hike 3",
+      "time": "1 hours",
+      "hikeLength": 32,
+      "elevationChange": "50ft"
+    }
   ]

@@ -1,9 +1,10 @@
 const router = require('express').Router();
-const hikeRoutes = require('./hikeRoutes');
 const userRoutes = require('./userRoutes');
-
-router.use('/hikes', hikeRoutes);
+const hikeRoutes = require('./hikeRoutes');
 
 router.use('/users', userRoutes);
+router.use('/hikes', hikeRoutes);
+
+
 
 module.exports = router;
