@@ -5,46 +5,56 @@ const withAuth = require('../utils/auth');
 
 
 // stops non logged in users from accessing page
-router.get('/', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
   console.log('route');
   try {
-    const hikeData = await Hike.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ['name'],
-        },
-      ],
+    const userData = await User.findAll({
+      attributes: { exclude: ['password'] },
+      order: [['name', 'ASC']],
     });
-  
-    const hike = hikeData.map((hike) => hike.get({ plain: true }));
-    
+
+    const users = userData.map((hike) => hike.get({ plain: true }));
+
     res.render('homepage', {
-      hike,
+      users,
       logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }    
+});
+
+router.get('/hike/:id', async (req, res) => {
+  try {
+    const hikeData = await Hike.findByPk(req.params.id, {
+       include: [
+         {
+           model: User,
+           through: {
+            attributes: ['name'],
+           }           
+         },
+       ],
+    });
+    const hikes = hikeData.get({ plain: true});
+    res.render('hike', {
+      ...hikes,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get('/login', (req, res) => {
-  // session redirects to home page if it exists
-  if (req.session.logged_in) {
-    res.redirect('/profile');
-    return;
-  }
-
-  res.render('login');
-});
-
-
-router.get('./views/profile', withAuth, async (req, res) => {
+router.get('/profile', async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Hike }],
+      include: [{ model: Hike,
+         through: {
+           attributes: ['hikeName']
+         }}],
     });
 
     const user = userData.get({ plain: true });
@@ -58,24 +68,13 @@ router.get('./views/profile', withAuth, async (req, res) => {
   }
 });
 
-router.get('/hike/:id', async (req, res) => {
-  try {
-    const hikeData = await Hike.findByPk(req.params.id, {
-       include: [
-         {
-           model: User,
-           attributes: ['name'],
-         },
-       ],
-    });
-    const hike = hikeData.get({ plain: true});
-    res.render('hike', {
-      ...hike,
-      logged_in: req.session.logged_in
-    });
-  } catch (err) {
-    res.status(500).json(err);
+router.get('/login', (req, res) => {
+  // session redirects to home page if it exists
+  if (req.session.logged_in) {
+    res.redirect('homepage');
+    return;
   }
-});
 
+  res.render('login');
+});
 module.exports = router;

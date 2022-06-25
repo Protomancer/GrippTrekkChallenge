@@ -2,13 +2,13 @@ const newFormHandler = async (event) => {
     event.preventDefault();
   
     const name = document.querySelector('#hike-name').value.trim();
-    const rating = document.querySelector('#hike-rating').value.trim();
+    const time = document.querySelector('#hike-time').value.trim();
     const elevation = document.querySelector('#hike-elevation').value.trim();
   
-    if (name && rating && elevation) {
-      const response = await fetch(`/api/hike`, {
+    if (name && time && elevation) {
+      const response = await fetch(`/api/hikes`, {
         method: 'POST',
-        body: JSON.stringify({ name, rating, elevation }),
+        body: JSON.stringify({ name, time, elevation }),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -17,7 +17,7 @@ const newFormHandler = async (event) => {
       if (response.ok) {
         document.location.replace('/profile');
       } else {
-        alert('Failed to create activity');
+        alert('Failed to create hike');
       }
     }
   };
@@ -27,6 +27,6 @@ const newFormHandler = async (event) => {
     .querySelector('.new-hike-form')
     .addEventListener('submit', newFormHandler);
   
-  document
-    .querySelector('.hike-list')
-    .addEventListener('click', delButtonHandler);
+  // document
+  //   .querySelector('.hike-list')
+  //   .addEventListener('click', delButtonHandler);
