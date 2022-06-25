@@ -16,9 +16,10 @@ router.get('/', withAuth, async (req, res) => {
         },
       ],
     });
-    console.log("test");
+  
     const hike = hikeData.map((hike) => hike.get({ plain: true }));
-      res.render('homepage', {
+    
+    res.render('homepage', {
       hike,
       logged_in: req.session.logged_in,
     });
@@ -38,7 +39,7 @@ router.get('/login', (req, res) => {
 });
 
 
-router.get('/profile', withAuth, async (req, res) => {
+router.get('./views/profile', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
@@ -60,12 +61,12 @@ router.get('/profile', withAuth, async (req, res) => {
 router.get('/hike/:id', async (req, res) => {
   try {
     const hikeData = await Hike.findByPk(req.params.id, {
-      // include: [
-      //   {
-      //     model: User,
-      //     attributes: ['name'],
-      //   },
-      // ],
+       include: [
+         {
+           model: User,
+           attributes: ['name'],
+         },
+       ],
     });
     const hike = hikeData.get({ plain: true});
     res.render('hike', {
