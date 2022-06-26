@@ -1,21 +1,22 @@
 const newFormHandler = async (event) => {
     event.preventDefault();
   
-    const name = document.querySelector('#hike-name').value.trim();
+    const hikeName = document.querySelector('#hike-name').value.trim();
     const time = document.querySelector('#hike-time').value.trim();
-    const elevation = document.querySelector('#hike-elevation').value.trim();
-  
-    if (name && time && elevation) {
+    const hikeLength = document.querySelector('#hike-length').value.trim();
+    const elevationChange = document.querySelector('#elevation-change').value.trim();
+    
+    if (hikeName && time && hikeLength && elevationChange) {
       const response = await fetch(`/api/hikes`, {
         method: 'POST',
-        body: JSON.stringify({ name, time, elevation }),
+        body: JSON.stringify({ hikeName, time, hikeLength, elevationChange }),
         headers: {
           'Content-Type': 'application/json',
         },
       });
-  
+      console.log(response);
       if (response.ok) {
-        document.location.replace('/profile');
+        document.location.replace('/');
       } else {
         alert('Failed to create hike');
       }

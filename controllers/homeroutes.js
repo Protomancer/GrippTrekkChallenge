@@ -8,18 +8,20 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
   console.log('route');
   try {
-    const userData = await User.findAll({
-      attributes: { exclude: ['password'] },
-      order: [['name', 'ASC']],
+    const hikeData = await Hike.findAll({
+      include:[{all: true}],
+      // attributes: { exclude: ['password'] },
+      // order: [['name', 'ASC']],
     });
 
-    const users = userData.map((hike) => hike.get({ plain: true }));
-
+    const hikes = hikeData.map((hike) => hike.get({ plain: true }));
+    console.log(hikes);
     res.render('homepage', {
-      users,
+      hikes,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }    
 });
@@ -27,14 +29,14 @@ router.get('/', async (req, res) => {
 router.get('/hike/:id', async (req, res) => {
   try {
     const hikeData = await Hike.findByPk(req.params.id, {
-       include: [
-         {
-           model: User,
-           through: {
-            attributes: ['name'],
-           }           
-         },
-       ],
+       include: [{all: true}],
+      //    {
+      //      model: User,
+      //      through: {
+      //       attributes: ['name'],
+      //      }           
+      //    },
+      //  ],
     });
     const hikes = hikeData.get({ plain: true});
     res.render('hike', {
@@ -48,19 +50,18 @@ router.get('/hike/:id', async (req, res) => {
 
 router.get('/profile', async (req, res) => {
   try {
-    // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Hike,
-         through: {
-           attributes: ['hikeName']
-         }}],
-    });
+  //   // Find the logged in user based on the session ID
+  //   const userData = await User.findByPk(req.session.user_id, {
+  //     attributes: { exclude: ['password'] },
+  //     include: [{ model: Hike,
+  //        through: {
+  //          attributes: ['hikeName']
+  //        }}],
+  
 
-    const user = userData.get({ plain: true });
+    // const user = userData.get({ plain: true });
 
     res.render('profile', {
-      ...user,
       logged_in: true
     });
   } catch (err) {
@@ -71,7 +72,7 @@ router.get('/profile', async (req, res) => {
 router.get('/login', (req, res) => {
   // session redirects to home page if it exists
   if (req.session.logged_in) {
-    res.redirect('homepage');
+    res.redirect('/profile');
     return;
   }
 
