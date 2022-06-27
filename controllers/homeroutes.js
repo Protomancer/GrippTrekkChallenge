@@ -16,6 +16,18 @@ router.get('/', async (req, res) => {
 
     const hikes = hikeData.map((hike) => hike.get({ plain: true }));
     console.log(hikes);
+
+    for (let index = 0; index < hikes.length; index++) {
+      const userData = await User.findOne({
+        where: {
+          id: hikes[index].user_id
+        }
+      })
+      hikes[index].userName = userData.name
+      console.log(hikes[index]);
+      
+    }
+
     res.render('homepage', {
       hikes,
       logged_in: req.session.logged_in,
