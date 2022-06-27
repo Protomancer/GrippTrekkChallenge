@@ -1,47 +1,33 @@
 const newFormHandler = async (event) => {
     event.preventDefault();
   
-    const name = document.querySelector('#hike-name').value.trim();
-    const rating = document.querySelector('#hike-rating').value.trim();
-    const elevation = document.querySelector('#hike-elevation').value.trim();
-  
-    if (name && rating && elevation) {
-      const response = await fetch(`/api/hike`, {
+    const hikeName = document.querySelector('#hike-name').value.trim();
+    const time = document.querySelector('#hike-time').value.trim();
+    const hikeLength = document.querySelector('#hike-length').value.trim();
+    const elevationChange = document.querySelector('#elevation-change').value.trim();
+    
+    if (hikeName && time && hikeLength && elevationChange) {
+      const response = await fetch(`/api/hikes`, {
         method: 'POST',
-        body: JSON.stringify({ name, rating, elevation }),
+        body: JSON.stringify({ hikeName, time, hikeLength, elevationChange }),
         headers: {
           'Content-Type': 'application/json',
         },
       });
-  
+      console.log(response);
       if (response.ok) {
-        document.location.replace('/profile');
+        document.location.replace('/');
       } else {
-        alert('Failed to create activity');
+        alert('Failed to create hike');
       }
     }
   };
   
-//   const delButtonHandler = async (event) => {
-//     if (event.target.hasAttribute('data-id')) {
-//       const id = event.target.getAttribute('data-id');
-  
-//       const response = await fetch(`/api/activities/${id}`, {
-//         method: 'DELETE',
-//       });
-  
-//       if (response.ok) {
-//         document.location.replace('/activity');
-//       } else {
-//         alert('Failed to delete activity');
-//       }
-//     }
-//   };
   
   document
     .querySelector('.new-hike-form')
     .addEventListener('submit', newFormHandler);
   
-  document
-    .querySelector('.hike-list')
-    .addEventListener('click', delButtonHandler);
+  // document
+  //   .querySelector('.hike-list')
+  //   .addEventListener('click', delButtonHandler);

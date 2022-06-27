@@ -7,26 +7,26 @@ Hike.init (
     {
         id: {
             type: DataTypes.INTEGER,
-            allowNull: true,
+            allowNull: false,
             primaryKey: true,
             autoIncrement: true,
         },
         hikeName: {
             type: DataTypes.STRING,
-            allowNull: true
+            allowNull: false,
         },
         time: {
             type: DataTypes.STRING,
-            allowNull: true
+            allowNull: false,
         },
-        length: {
+        hikeLength: {
             type: DataTypes.INTEGER,
-            allowNull: true,
-            default: 0
+            allowNull: false,
+            default: 0,
         },
         elevationChange: {
             type: DataTypes.STRING,
-            allowNull: true
+            allowNull: false,
         },
         user_id:{
             type:DataTypes.INTEGER,
@@ -39,6 +39,7 @@ Hike.init (
     {
         sequelize,
         timestamps:false,
+        freezeTableName: true,
         underscored: true,
         modelName: 'hike'
     }

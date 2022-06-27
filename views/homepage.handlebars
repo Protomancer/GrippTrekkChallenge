@@ -3,7 +3,6 @@
 <div class="row mb-4">
   <div class="col-md-5">
     <h2>
-      <!-- Call helper function with triple brackets to render the emoji span as HTML -->
       <a href="/hike/{{hike.id}}">{{hike.hikeName}}</a>
     </h2>
     <div class="col-md-7">
@@ -11,13 +10,13 @@
         {{hike.time}}
       </p>
       <p> 
-        {{hike.length}}
+        {{hike.hikeLength}}
       </p>
       <p>
         {{hike.elevationChange}}
       </p>
       </div>
-      <p>Created by {{hike.user.name}}</p>
+      <p>Created by {{user.name}}</p>
   </div>
 </div>
 {{/each}}

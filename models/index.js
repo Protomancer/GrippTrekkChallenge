@@ -1,24 +1,17 @@
 const Hike = require('./Hike');
-
-const Boulder = require('./Boulder');
-
 const User = require('./User');
 
-
-User.hasMany(Hike,Boulder, {
-    foreignKey: 'user_id',
-    onDelete: 'CASCADE'
-});
-
-Boulder.belongsTo(User, {
-    foreignKey: 'user_id'
-});
 Hike.belongsTo(User, {
     foreignKey: 'user_id'
 });
 
-module.exports = Hike;
+User.hasMany(Hike, {
+    // as: 'hikes',
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
+});
 
-module.exports = Boulder;
+Hike.associate({User});
+User.associate({Hike});
 
-module.exports = User;
+module.exports = {User, Hike};
