@@ -1,14 +1,39 @@
-<div class="text-center">
+{{!-- <div class="text-center">
   <h2>tacocat{{name}}</h2>
   <p>{{hikeName}}</p>
   <p>Created by {{user.name}}</p>
   <p>
-    {{time}}
+    Completion Time: {{time}}
   </p>
   <p>
-    {{elevationChange}}
+    Elevation Change:{{elevationChange}}
   </p>
   <p>
-    <button class="waves-effect waves-light btn">Added Hike</button>
+    <a href="/">
+      <button class="waves-effect waves-light btn">Added Hike</button>
+    </a>
   </p>
+</div> --}}
+<div class="row text-center">
+  <div class="col s12 m6">
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <span class="card-title">
+          <h2>{{hikeName}}</h2>
+        </span>
+        <p>Created by: {{userName}}</p>
+        <p>
+          Completion Time: {{time}}
+        </p>
+        <p>
+          Elevation Change: {{elevationChange}}
+        </p>
+        <p>
+          <a href="/">
+            <button class="waves-effect waves-light btn">Added Hike</button>
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
 </div>

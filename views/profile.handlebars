@@ -1,18 +1,18 @@
 <div class="row">
   <div class="col-auto">
-    <h2>Welcome, {{user.name}}!</h2>
+    <h2>Welcome!</h2>
   </div>
 </div>
 
 <div class="row mt-4">
   <div class="col-md-6">
-    <h3>Create a New Activity:</h3>
+    <h3>Create a New Hike:</h3>
     <form class="col s12 new-hike-form">
       <div class="row">
 
         <div class="row">
-          <div class="input-field col s12">
-            <textarea id="hike-name" class="materialize-textarea"></textarea>
+          <div class="col s6">
+            <input placeholder="Name" id="hike-name" type="text" class="validate">
             <label for="hike-name">Hike Name</label>
           </div>
         </div>
@@ -21,9 +21,9 @@
       <div class="row">
 
         <div class="row">
-          <div class="input-field col s12">
-            <textarea id="hike-time" class="materialize-textarea"></textarea>
-            <label for="hike-time">Completion Time:</label>
+          <div class="col s6">
+            <input placeholder="Hours" id="hike-time" type="text" class="validate">
+            <label for="hike-time">Completion Time</label>
           </div>
         </div>
 
@@ -31,19 +31,19 @@
       <div class="row">
 
         <div class="row">
-          <div class="input-field col s12">
-            <textarea id="elevation-change" class="materialize-textarea"></textarea>
+          <div class="col s6">
+            <input placeholder="Feet" id="elevation-change" type="text" class="validate">
             <label for="hike-elevation">Elevation Change</label>
           </div>
         </div>
          <div class="row">
-          <div class="input-field col s12">
-            <textarea id="hike-length" class="materialize-textarea"></textarea>
+          <div class="col s6">
+            <input placeholder="Miles" id="hike-length" type="text" class="validate">
             <label for="hike-length">Length of Hike</label>
           </div>
         </div>
 
-        <button class="waves-effect waves-light btn" type="submit" name="action">Add Activity</button>
+        <button class="waves-effect waves-light btn" type="submit" name="action">Add Hike</button>
 
       </div>
     </form>

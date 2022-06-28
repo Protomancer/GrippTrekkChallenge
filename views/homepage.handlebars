@@ -1,22 +1,26 @@
 <!-- Loop over each object in the projects array -->
 {{#each hikes as |hike| }}
 <div class="row mb-4">
-  <div class="col-md-5">
-    <h2>
-      <a href="/hike/{{hike.id}}">{{hike.hikeName}}</a>
-    </h2>
-    <div class="col-md-7">
-      <p>
-        {{hike.time}}
-      </p>
-      <p> 
-        {{hike.hikeLength}}
-      </p>
-      <p>
-        {{hike.elevationChange}}
-      </p>
+  <div class="col s12 m6">
+    <div class="card teal lighten-2">
+      <div class="card-content white-text">
+        <span class="card-title">
+          <h2><a href="/hike/{{hike.id}}">{{hike.hikeName}}</a></h2>
+        </span>
+        <div class="col-md-7">
+          <p>
+            Completed in: {{hike.time}}
+          </p>
+          <p>
+            Distance: {{hike.hikeLength}} miles
+          </p>
+          <p>
+            Elevation Change: {{hike.elevationChange}}
+          </p>
+        </div>
+        <p>Created by: {{hike.userName}}</p>
       </div>
-      <p>Created by {{hike.userName}}</p>
+    </div>
   </div>
 </div>
 {{/each}}
